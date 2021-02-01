@@ -1,0 +1,51 @@
+// SPDX-License-Identifier: AGPL-3.0-only
+
+// This is a project written specifically to demonstrate using Molecule,
+// and Ansible with GitHub Actions
+// Copyright (C) 2020-2021  Patrick McLean - psmware ltd
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+{
+	"name": "MAGA POC",
+	"dockerComposeFile": [
+		"docker-compose.yml"
+	],
+	"service": "maga-app",
+	"workspaceFolder": "/app",
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/zsh",
+		"python.pythonPath": "/usr/local/bin/python",
+		"python.linting.pylintEnabled": true,
+		"python.linting.pylintArgs": ["--load-plugins", "pylint_django", "--reports", "12", "--disable", "I0011"],
+		"python.linting.flake8Enabled": true,
+		"python.linting.flake8Args": ["--ignore=E24,W504,E501", "--verbose"],
+		"python.formatting.blackPath": "black",
+		"python.formatting.provider": "black",
+		"python.testing.pytestEnabled": true,
+		"yaml.format.singleQuote": true,
+	},
+	"extensions": [
+		"ms-python.python",
+		"hookyqr.beautify",
+		"davidanson.vscode-markdownlint",
+		"svc-reportan-kohler.path-intellisense",
+		"redhat.vscode-yaml",
+		"formulahendry.auto-rename-tag",
+		"p1c2u.docker-compose",
+		"henriiik.docker-linter",
+		"donjayamanne.githistory",
+		"eamodio.gitlens",
+		"dotjoshjohnson.xml",
+		"github.vscode-pull-request-github"
+	],
+	"remoteUser": "vscode",
+	"postCreateCommand": "sudo pipenv install --system --deploy --dev",
+}
